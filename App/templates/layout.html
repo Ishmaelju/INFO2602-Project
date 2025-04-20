@@ -20,13 +20,15 @@
                 <li><a href="/logout">Logout</a></li>
               </ul>
               {% else %}
-              <form class="right navbar-form" method="POST" action="/login" style="display: flex; flex-wrap: nowrap; align-items: center; margin-right: 10px;">
-                  <button type="submit" class="btn waves-effect waves-light">Login</button>
-              </form>
+              <ul id="nav-mobile" class="right">
+                <li><a href="/login" class="btn waves-effect waves-light blue darken-4">Login</a></li>
+              </ul>                        
               {% endif %}
               
           </div>
       </nav>
+      {% block content %}{% endblock %}
+
 
       <!-- Toggle Button -->
       <a id="toggle-button" class="btn-floating btn-large waves-effect waves-light purple">
@@ -277,9 +279,10 @@
         </form>
       </div>
 
-      <!-- Map -->
-      <div id="map"></div>
-
+    {% if show_map %}
+    <!-- Map -->
+    <div id="map"></div>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" async defer></script>
     <script>
@@ -290,6 +293,9 @@
         });
       }
     </script>
+    
+  {% endif %}
+  
     
   </body>
 </html>
